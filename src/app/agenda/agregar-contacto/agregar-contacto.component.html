@@ -1,0 +1,99 @@
+<div class="contenedor-principal">
+    <div [class.alternative]="otroTema">
+        <mat-toolbar color="primary">
+            <span class="centrar">Agregar Contacto</span>
+            <span class="example-spacer"></span>
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon>Menu</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item color="primary" (click)="cambiarTema()">Cambiar tema</button>
+                <button mat-menu-item>Cambiar visualización</button>
+            </mat-menu>
+        </mat-toolbar>
+        <div class="col-md-10 col-md-offset-1">
+            <div>
+                <a [routerLink]="['/agenda']" class="btn btn-default"> Volver</a>
+            </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="well well bs-component">
+                <form novalidate class="form-horizontal" (ngSubmit)="createContact(createContactForm.value)" #createContactForm="ngForm">
+                    <fieldset>
+                        <legend>Añadir Nuevo Contacto</legend>
+                        <div class="form-group">
+                            <label for="nombre" class="col-lg-2 control-label">Nombre</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" ngModel #nombre="ngModel" required minlength="2">
+                                <div *ngIf="nombre.errors?.required && nombre.touched" class="alert alert-danger">
+                                    <p>La miniatura es obligatoria</p>
+                                </div>
+                                <div *ngIf="nombre.errors?.minlength && nombre.touched" class="alert alert-danger">
+                                    <p>Mínimo de 2 caracteres</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexo" class="col-lg-4 control-label">Sexo</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" id="sexo" name="sexo" placeholder="sexo" ngModel #sexo="ngModel" required>
+                                    <option value="male">Masculino</option>
+                                    <option value="female">Femenino</option>
+                                    
+                                  </select>
+                                <div *ngIf="sexo.errors?.required && sexo.touched" class="alert alert-danger">
+                                    <p>El Sexo es obligatorio</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apellidoPaterno" class="col-lg-4 control-label">Apellido Paterno</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido Paterno" ngModel #apellidoPaterno="ngModel" required>
+                                <div *ngIf="apellidoPaterno.errors?.required && apellidoPaterno.touched" class="alert alert-danger">
+                                    <p>El Apellido Paterno es obligatorio</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoMaterno" class="col-lg-4 control-label">Apellido Materno</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" ngModel #apellidoMaterno="ngModel" required>
+                                <div *ngIf="apellidoMaterno.errors?.required && apellidoMaterno.touched" class="alert alert-danger">
+                                    <p>El Apellido Materno es obligatorio</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono" class="col-lg-4 control-label">Telefono</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono" ngModel #telefono="ngModel" minlength="10" maxlength="10" required>
+                                <div *ngIf="telefono.errors?.required && telefono.touched" class="alert alert-danger">
+                                    <p>El telefono es obligatorio</p>
+                                </div>
+                                <div *ngIf="telefono.errors?.minlength && telefono.touched" class="alert alert-danger">
+                                    <p>Mínimo de 10 caracteres</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email" ngModel #email="ngModel" required>
+                                <div *ngIf="email.errors?.required && email.touched" class="alert alert-danger">
+                                    <p>El email es obligatorio</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <a [routerLink]="['/agenda/']" class="btn btn-default">Cancelar</a>
+                                <button type="submit" class="btn btn-primary" [disabled]="createContactForm.invalid">Crear</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="contenedor-principal">
+    <div [class.alternative]="otroTema">
+
+        <mat-toolbar color="primary">
+            <span class="centrar">Agenda de Contactos</span>
+            <span class="example-spacer"></span>
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon>Menu</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item color="primary" (click)="cambiarTema()">Cambiar tema</button>
+                <button mat-menu-item>Cambiar visualización</button>
+            </mat-menu>
+        </mat-toolbar>
+
+
+        <app-listado-contactos></app-listado-contactos>
+
+    </div>

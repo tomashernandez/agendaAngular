@@ -1,0 +1,27 @@
+.cardFlotante {
+    position: fixed;
+    z-index: 5;
+    top: 190px;
+    background: #fff;
+    right: 30%;
+    color: #000;
+    text-align: left
+}
+
+.cardFlotante img {
+    margin-bottom: 1em;
+}
+
+.cardFlotante .mat-card-subtitle {
+    color: #000;
+}
+
+.cardFlotante .mat-card-actions {
+    text-align: center;
+}
+
+.fabFlotante {
+    position: absolute;
+    right: -7px;
+    top: -15px;
+}

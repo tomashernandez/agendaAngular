@@ -1,0 +1,49 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-header">
+        <form class="example-form">
+            <a [routerLink]="['/agregar/']" mat-mini-fab matTooltip="Agregar nuevo Contacto" matTooltipPosition="right" class='agregar'>
+                <mat-icon>add</mat-icon>
+            </a>
+            <mat-form-field class="example-full-width">
+                <mat-icon matPreffix>search</mat-icon>
+                <input type="text" matInput placeholder="Buscar" [(ngModel)]="searchText" name="buscador">
+            </mat-form-field>
+        </form>
+    </div>
+
+</div>
+
+<div class="demo-card-container">
+    <!---input binding
+        [nombreVariableComponenteDestino]="nombreVariableComponenteEmisor"
+    -->
+    <app-detalle-contacto [contactoSeleccionado]="contactoSeleccionado"></app-detalle-contacto>
+
+    <ul *ngFor="let group of contactos | orderBy:'letra' " class="listaEncabezados">
+        <!-- [ngClass]="(typeof searchText!='undefined' && group.letra.toLowerCase()[0]==searchText[0] ) ? 'letraEncabezado' : 'letraEncabezado'"
+            [ngClass]="[ (group.letra.toLowerCase()[0]==searchText[0])  ?' letraEncabezado':'letraEncabezado']"
+        -->
+        <li class="letraEncabezado"> {{group.letra}}</li>
+        <ul>
+            <li *ngFor="let contacto of group.contactos | orderBy: 'nombre' | filterNew : searchText ">
+                <mat-card>
+                    <mat-card-header>
+                        <div mat-card-avatar class="">
+                            <img mat-card-sm-image [src]="contacto.fotoLink" title="{{contacto.nombre}} {{contacto.apellidoPaterno}} {{contacto.apellidoMaterno}} ">
+                        </div>
+                    </mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{contacto.nombre}} {{contacto.apellidoPaterno}} {{contacto.apellidoMaterno}} </mat-card-title>
+
+                        <mat-card-subtitle>
+                            <mat-icon>phone </mat-icon><span>{{contacto.telefono}}</span>
+                            <button mat-button mat-raised-button color="warn" class="botonVer" (click)="seleccionarContacto(contacto)">Ver</button>
+
+                        </mat-card-subtitle>
+
+                    </mat-card-title-group>
+                </mat-card>
+            </li>
+        </ul>
+    </ul>
+</div>
